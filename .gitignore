@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+=======
+########################################################################
+# Python - https://github.com/github/gitignore/blob/master/Python.gitignore
+########################################################################
+>>>>>>> master
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
+<<<<<<< HEAD
 # C extensions
 *.so
 
@@ -158,3 +165,112 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+=======
+# Distribution / packaging
+build/
+dist/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+
+# Unit test / coverage reports
+.coverage
+.coverage\.*
+.pytest_cache/
+.mypy_cache/
+test-reports
+
+# Test fixtures
+cffi_bin
+
+# Pyenv Stuff
+.python-version
+
+# testing with seleniumbase
+latest_logs
+archived_logs
+current-screenshot.png
+screenshot*.png
+
+########################################################################
+# OSX - https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
+########################################################################
+.DS_Store
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+########################################################################
+# node - https://github.com/github/gitignore/blob/master/Node.gitignore
+########################################################################
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+venv
+tests
+
+# Lockfiles
+yarn.lock
+package-lock.json
+
+########################################################################
+# JetBrains
+########################################################################
+.idea
+
+########################################################################
+# VSCode
+########################################################################
+.vscode/
+
+.direnv/
+.envrc
+
+.streamlit/
+.venv/
+test-results.xml
+.env
+tests/requirements.txt
+tests/test_frontend.py
+tests/test_package.py
+tests/test_release.py
+tests/visual_baseline/test_basic/first_test/baseline.png
+tests/visual_baseline/test_basic/first_test/latest.png
+tests/visual_baseline/test_basic/first_test/page_url.txt
+tests/visual_baseline/test_basic/first_test/tags_level_1.txt
+tests/visual_baseline/test_basic/first_test/tags_level_2.txt
+tests/visual_baseline/test_basic/first_test/tags_level_3.txt
+tests/requirements.txt
+tests/test_frontend.py
+tests/test_package.py
+tests/test_release.py
+tests/visual_baseline/test_basic/first_test/baseline.png
+tests/visual_baseline/test_basic/first_test/latest.png
+tests/visual_baseline/test_basic/first_test/page_url.txt
+tests/visual_baseline/test_basic/first_test/tags_level_1.txt
+tests/visual_baseline/test_basic/first_test/tags_level_2.txt
+tests/visual_baseline/test_basic/first_test/tags_level_3.txt
+streamlit_folium/__init__.py
+streamlit_folium/frontend/.env
+streamlit_folium/frontend/.prettierrc
+streamlit_folium/frontend/package.json
+streamlit_folium/frontend/tsconfig.json
+streamlit_folium/frontend/public/bootstrap.min.css
+streamlit_folium/frontend/public/index.html
+streamlit_folium/frontend/src/circle-to-polygon.tsx
+streamlit_folium/frontend/src/index.tsx
+streamlit_folium/frontend/src/react-app-env.d.ts
+>>>>>>> master
