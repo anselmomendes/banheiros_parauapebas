@@ -29,8 +29,7 @@ st.markdown("""
 
 st.title("Banheiros de Parauapebas")
 st.image("imagens\Imagem2.png", width=200)
-
-#print(location)
+output = None
 
 def get_location():
   location = streamlit_geolocation()
@@ -97,53 +96,51 @@ with col1:
     longitude = st.session_state.locale['longitude']
 
     m = folium.Map(location=[latitude, longitude], zoom_start=18)
-    folium.Marker([latitude, longitude], popup="Minha Localização", tooltip="Minha Localização").add_to(m)
+    folium.Marker([latitude, longitude],  tooltip="Minha Localização").add_to(m)
 
     select = pd.read_sql("SELECT * FROM banheiro.vote", conecta_db())
 
     for index, row in select.iterrows():
-      folium.Marker([row['latitude'], row['longitude']], popup=f"{row['estabelecimentos']}", \
+      folium.Marker([row['latitude'], row['longitude']], \
         tooltip=f"{row['estabelecimentos']}").add_to(m)
 
     output = st_folium(m, width=800, height=400, returned_objects=["last_object_clicked_tooltip"])
 
     if st.button("Avaliar"):
       vote()
-
-    if "stars" in st.session_state:
-      st.write("Avaliação enviada com sucesso!")
-
-    if "stars" in st.session_state and "locale" in st.session_state:
-      stars = pd.DataFrame([st.session_state.stars])
-      locale = pd.DataFrame([st.session_state.locale])
-      df = pd.concat([stars, locale], axis=1)
+      if "stars" in st.session_state and "locale" in st.session_state:
+        stars = pd.DataFrame([st.session_state.stars])
+        locale = pd.DataFrame([st.session_state.locale])
+        df = pd.concat([stars, locale], axis=1)
       
-
-      for i in df.index:
-          sql = """
-          INSERT into banheiro.vote (estabelecimentos, insumos, cheiro, estrutura, limpeza, descricao, latitude, longitude, media_final) 
-          values('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-          """ % (df['estabelecimentos'][i], df['insumos'][i], df['cheiro'][i], df['estrutura'][i], df['limpeza'][i], df['descricao'][i], df['latitude'][i], df['longitude'][i], df['media_final'][i])
-          inserir_db(sql)
+        for i in df.index:
+            sql = """
+            INSERT into banheiro.vote (estabelecimentos, insumos, cheiro, estrutura, limpeza, descricao, latitude, longitude, media_final) 
+            values('%s','%s','%s','%s','%s','%s','%s','%s','%s');
+            """ % (df['estabelecimentos'][i], df['insumos'][i], df['cheiro'][i], df['estrutura'][i], df['limpeza'][i], df['descricao'][i], df['latitude'][i], df['longitude'][i], df['media_final'][i])
+            inserir_db(sql)
 
 with col2:
-   if len(output) > 0:
+   if output:
+    meu_estabelecimentos = 'Minha Localização' if output['last_object_clicked_tooltip'] is None else output['last_object_clicked_tooltip']
     select = pd.read_sql(f"""SELECT estabelecimentos, 
     avg(insumos) insumos, 
     avg(cheiro) cheiro, 
     avg(estrutura) estrutura, 
     avg(limpeza) limpeza, 
-    avg(media_final) media_final 
+    avg(media_final) media_final,
+    max(descricao) descricao
     FROM banheiro.vote
-    where estabelecimentos = '{output['last_object_clicked_tooltip']}'
+    where estabelecimentos = '{meu_estabelecimentos}'
     group by estabelecimentos
     limit 1
     """, conecta_db())
 
-    st.write("Informações sobre o estabelecimento")
-    st.write(f"Estabelecimento: {select['estabelecimentos'][0]}")
-    st.write(f"Insumos: {select['insumos'][0]}")
-    st.write(f"Cheiro: {select['cheiro'][0]}")
-    st.write(f"Estrutura: {select['estrutura'][0]}")
-    st.write(f"Limpeza: {select['limpeza'][0]}")
-    st.write(f"Media Final: {select['media_final'][0]}")
+    st.markdown("# Informações sobre o estabelecimento")
+    st.write(f"*Estabelecimento:* {select['estabelecimentos'][0]}")
+    st.write(f"*Insumos:* {select['insumos'][0]}")
+    st.write(f"*Cheiro:* {select['cheiro'][0]}")
+    st.write(f"*Estrutura:* {select['estrutura'][0]}")
+    st.write(f"*Limpeza:* {select['limpeza'][0]}")
+    st.write(f"*Descrição:* {select['descricao'][0]}")
+    st.write(f"*Media Final:* {select['media_final'][0]}")
