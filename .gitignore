@@ -59,6 +59,9 @@ node_modules/
 # Coverage directory used by tools like istanbul
 coverage/
 
+venv
+tests
+
 # Lockfiles
 yarn.lock
 package-lock.json
@@ -79,3 +82,34 @@ package-lock.json
 .streamlit/
 .venv/
 test-results.xml
+.env
+tests/requirements.txt
+tests/test_frontend.py
+tests/test_package.py
+tests/test_release.py
+tests/visual_baseline/test_basic/first_test/baseline.png
+tests/visual_baseline/test_basic/first_test/latest.png
+tests/visual_baseline/test_basic/first_test/page_url.txt
+tests/visual_baseline/test_basic/first_test/tags_level_1.txt
+tests/visual_baseline/test_basic/first_test/tags_level_2.txt
+tests/visual_baseline/test_basic/first_test/tags_level_3.txt
+tests/requirements.txt
+tests/test_frontend.py
+tests/test_package.py
+tests/test_release.py
+tests/visual_baseline/test_basic/first_test/baseline.png
+tests/visual_baseline/test_basic/first_test/latest.png
+tests/visual_baseline/test_basic/first_test/page_url.txt
+tests/visual_baseline/test_basic/first_test/tags_level_1.txt
+tests/visual_baseline/test_basic/first_test/tags_level_2.txt
+tests/visual_baseline/test_basic/first_test/tags_level_3.txt
+streamlit_folium/__init__.py
+streamlit_folium/frontend/.env
+streamlit_folium/frontend/.prettierrc
+streamlit_folium/frontend/package.json
+streamlit_folium/frontend/tsconfig.json
+streamlit_folium/frontend/public/bootstrap.min.css
+streamlit_folium/frontend/public/index.html
+streamlit_folium/frontend/src/circle-to-polygon.tsx
+streamlit_folium/frontend/src/index.tsx
+streamlit_folium/frontend/src/react-app-env.d.ts
